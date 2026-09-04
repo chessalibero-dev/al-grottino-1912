@@ -1,4 +1,5 @@
 <title>Al Grottino Dal 1912 — Presentazione Sito</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -348,6 +349,73 @@
 
   @media (prefers-reduced-motion: reduce){
     .arrow-btn, #nav button.dot, .cta-button{ transition: none; }
+  }
+
+  /* ---------- MOBILE (real responsive layout, no scaled-down desktop) ---------- */
+  @media (max-width: 700px){
+    body{ overflow: hidden; height: 100dvh; }
+    #stage{ padding: 0; background: var(--bg); }
+    #deck-scaler{ width: 100%; height: 100%; transform: none !important; }
+    .slide{
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      padding: 74px 22px 104px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .slide::before{ inset: 14px; }
+    .slide::after{ inset: 18px; }
+
+    .kicker{ font-size: 11px; gap: 10px; margin-bottom: 18px; }
+    .kicker::after{ max-width: 60px; }
+
+    .seal{ width: 66px; height: 66px; }
+    .seal .seal-year{ font-size: 15px; }
+    .seal .seal-txt{ font-size: 5.5px; bottom: 13px; }
+
+    .slide--cover h1{ font-size: 34px; margin-top: 22px; }
+    .slide--cover .cover-sub{ font-size: 15px; margin-top: 14px; max-width: none; }
+    .slide--cover .cover-kicker{ font-size: 10px; }
+    .slide--cover .cover-foot{ font-size: 9px; }
+
+    .slide--text h2{ font-size: 25px; max-width: none; }
+    .slide--text .body{ font-size: 15.5px; margin-top: 18px; max-width: none; }
+
+    .slide--stat h2{ font-size: 21px; margin-bottom: 26px; max-width: none; }
+    .stat-grid{ grid-template-columns: 1fr; gap: 28px; }
+    .stat-num{ font-size: 54px; }
+    .stat-desc{ font-size: 14.5px; max-width: none; }
+    .stat-source{ margin-top: 22px; font-size: 9.5px; }
+
+    .slide--compare h2{ font-size: 21px; margin-bottom: 20px; }
+    .compare-grid{ grid-template-columns: 1fr; gap: 30px; flex: none; align-content: start; }
+    .compare-col{ flex: none; }
+    .compare-divider{ display: none; }
+    .compare-label{ font-size: 10.5px; margin-bottom: 12px; }
+    .compare-list{ gap: 10px; }
+    .compare-list li{ font-size: 14.5px; }
+
+    .slide--list h2{ font-size: 23px; margin-bottom: 20px; max-width: none; }
+    .feat-grid{ grid-template-columns: 1fr; column-gap: 0; row-gap: 14px; }
+    .feat-item{ font-size: 14.5px; padding-top: 12px; }
+
+    .slide--cta h2{ font-size: 25px; max-width: none; }
+    .slide--cta .body{ font-size: 15px; margin-top: 16px; max-width: none; }
+    .cta-button{ margin-top: 26px; padding: 14px 22px; font-size: 12px; }
+    .cta-hint{ font-size: 11px; margin-top: 16px; }
+    .cta-url{ font-size: 12px; }
+
+    .slide--closing h2{ font-size: 25px; max-width: none; }
+    .slide--closing .body{ font-size: 15px; margin-top: 16px; max-width: none; }
+    .next-hint{ font-size: 11px; margin-top: 20px; }
+    .closing-info{ font-size: 16.5px; }
+    .closing-label{ font-size: 10px; }
+
+    .arrow-btn{ top: auto; bottom: 14px; transform: none; width: 34px; height: 34px; background: var(--bg-alt); }
+    #prev{ left: 14px; }
+    #next{ right: 14px; }
+    #counter{ top: 14px; right: 16px; font-size: 10px; }
+    #nav{ bottom: 20px; }
   }
 
   /* ---------- PRINT (PDF export) ---------- */
