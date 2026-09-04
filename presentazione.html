@@ -1,0 +1,574 @@
+<title>Al Grottino Dal 1912 — Presentazione Sito</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:        #1c1712;
+    --bg-alt:    #241d16;
+    --ink:       #f3ead9;
+    --ink-dim:   #c9bda6;
+    --ink-faint: #8f8271;
+    --gold:      #c8992f;
+    --gold-dim:  #8a6b2c;
+    --wine:      #a3453f;
+    --wine-dim:  #6e2a2a;
+    --rule:      rgba(200,153,47,0.28);
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+  ::selection{ background: var(--gold); color: #1c1712; }
+
+  h1,h2,h3{
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  /* ---------- stage / scaling ---------- */
+  #stage{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(1px 1px at 20% 30%, rgba(243,234,217,0.035) 1px, transparent 1px),
+      radial-gradient(1px 1px at 70% 65%, rgba(243,234,217,0.03) 1px, transparent 1px),
+      radial-gradient(1px 1px at 45% 85%, rgba(243,234,217,0.03) 1px, transparent 1px),
+      var(--bg);
+    background-size: 7px 7px, 9px 9px, 11px 11px, auto;
+  }
+  #deck-scaler{
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    transform-origin: center center;
+  }
+  .slide{
+    position: absolute;
+    inset: 0;
+    width: 1280px;
+    height: 720px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 88px 108px;
+    background: var(--bg);
+  }
+  .slide.active{ display: flex; }
+  .slide::before{
+    content: "";
+    position: absolute;
+    inset: 30px;
+    border: 1px solid var(--rule);
+    pointer-events: none;
+  }
+  .slide::after{
+    content: "";
+    position: absolute;
+    inset: 36px;
+    border: 1px solid var(--rule);
+    pointer-events: none;
+  }
+
+  .kicker{
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .kicker::after{
+    content: "";
+    flex: 1;
+    max-width: 220px;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .seal{
+    width: 108px; height: 108px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-dim);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .seal::before{
+    content:"";
+    position:absolute; inset:7px;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+  }
+  .seal .seal-year{
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .seal .seal-txt{
+    position:absolute;
+    bottom: 22px;
+    font-size: 7.5px;
+    letter-spacing: 0.14em;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- COVER ---------- */
+  .slide--cover{ align-items: flex-start; }
+  .slide--cover .cover-top{
+    display:flex; align-items:center; justify-content:space-between;
+    width:100%; margin-bottom: auto;
+  }
+  .slide--cover .cover-kicker{
+    font-size: 13px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase;
+    color: var(--ink-dim);
+  }
+  .slide--cover h1{
+    font-size: 76px;
+    line-height: 1.04;
+    color: var(--ink);
+    margin-top: 40px;
+  }
+  .slide--cover h1 em{
+    font-style: italic;
+    color: var(--gold);
+  }
+  .slide--cover .cover-sub{
+    margin-top: 22px;
+    font-size: 20px;
+    color: var(--ink-dim);
+    max-width: 640px;
+  }
+  .slide--cover .cover-foot{
+    margin-top: auto;
+    display:flex; justify-content:space-between; align-items:flex-end;
+    width:100%;
+    font-size: 12px; letter-spacing:0.08em; color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  /* ---------- TEXT slide ---------- */
+  .slide--text h2{
+    font-size: 46px;
+    color: var(--ink);
+    max-width: 780px;
+  }
+  .slide--text .body{
+    margin-top: 30px;
+    font-size: 21px;
+    line-height: 1.6;
+    color: var(--ink-dim);
+    max-width: 640px;
+  }
+  .slide--text .body strong{ color: var(--ink); font-weight: 600; }
+  .hl{ color: var(--gold); font-weight: 600; }
+
+  /* ---------- STAT slide ---------- */
+  .slide--stat h2{ font-size: 40px; margin-bottom: 46px; max-width: 760px; }
+  .stat-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  .stat-num{
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 108px;
+    line-height: 1;
+    color: var(--gold);
+    text-wrap: balance;
+  }
+  .stat-desc{
+    margin-top: 16px;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--ink-dim);
+    max-width: 320px;
+  }
+  .stat-source{
+    margin-top: 40px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- COMPARE slide ---------- */
+  .slide--compare h2{ font-size: 40px; margin-bottom: 40px; }
+  .compare-grid{
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 48px;
+    flex: 1;
+    align-items: stretch;
+  }
+  .compare-col{ display:flex; flex-direction: column; }
+  .compare-divider{ background: var(--rule); }
+  .compare-label{
+    font-size: 12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase;
+    margin-bottom: 22px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .compare-col--prima .compare-label{ color: var(--wine); }
+  .compare-col--dopo .compare-label{ color: var(--gold); }
+  .compare-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:18px; }
+  .compare-list li{
+    font-size: 17px; line-height:1.45; color: var(--ink-dim);
+    display:flex; gap:12px; align-items:flex-start;
+  }
+  .compare-list li .mark{ flex-shrink:0; margin-top:3px; }
+  .compare-col--prima .mark{ color: var(--wine); }
+  .compare-col--dopo .mark{ color: var(--gold); }
+  .compare-col--dopo li{ color: var(--ink); }
+
+  /* ---------- LIST slide ---------- */
+  .slide--list h2{ font-size: 42px; margin-bottom: 40px; max-width: 760px; }
+  .feat-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 56px;
+    row-gap: 22px;
+  }
+  .feat-item{
+    display:flex; gap:14px; align-items:flex-start;
+    font-size: 17.5px; line-height:1.45; color: var(--ink-dim);
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+  }
+  .feat-item .dash{ color: var(--gold); flex-shrink:0; }
+
+  /* ---------- CTA slide ---------- */
+  .slide--cta h2{ font-size: 46px; max-width: 720px; }
+  .slide--cta .body{ margin-top: 26px; font-size: 20px; color: var(--ink-dim); max-width: 600px; line-height:1.6; }
+  .cta-button{
+    margin-top: 48px;
+    display:inline-flex; align-items:center; gap:12px;
+    align-self: flex-start;
+    padding: 18px 34px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 14px; font-weight:600; letter-spacing:0.14em; text-transform: uppercase;
+    font-family: "IBM Plex Sans", sans-serif;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .cta-button:hover{ background: var(--gold); color: #1c1712; }
+  .cta-hint{ margin-top: 22px; font-size: 13px; color: var(--ink-faint); }
+  .cta-url{
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 14px;
+    color: var(--gold);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    word-break: break-all;
+  }
+
+  /* ---------- CLOSING slide ---------- */
+  .slide--closing{ align-items:flex-start; }
+  .slide--closing h2{ font-size: 46px; max-width: 700px; }
+  .slide--closing .body{ margin-top: 26px; font-size: 20px; color: var(--ink-dim); max-width: 600px; line-height:1.6; }
+  .next-hint{
+    margin-top: 32px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .next-hint span{ display: inline-block; margin-left: 2px; }
+  .closing-foot{
+    margin-top: auto;
+    display:flex; align-items:flex-start; gap:20px;
+  }
+  .closing-foot .line{ width:36px; height:1px; background: var(--rule); margin-top: 15px; flex-shrink:0; }
+  .closing-label{
+    font-size: 12px; letter-spacing:0.08em; text-transform:uppercase;
+    color: var(--ink-faint); margin-bottom: 8px;
+  }
+  .closing-info{ font-size: 23px; color: var(--ink); font-weight: 500; }
+
+  /* ---------- nav (screen only) ---------- */
+  #nav{
+    position: fixed;
+    left: 0; right: 0; bottom: 26px;
+    display:flex; align-items:center; justify-content:center;
+    gap: 10px;
+    z-index: 10;
+  }
+  #nav button.dot{
+    width: 7px; height:7px; border-radius:50%;
+    background: var(--ink-faint);
+    border: none; padding:0; cursor:pointer;
+    opacity: 0.5;
+    transition: opacity .15s ease, background .15s ease, transform .15s ease;
+  }
+  #nav button.dot.active{ background: var(--gold); opacity:1; transform: scale(1.3); }
+
+  .arrow-btn{
+    position: fixed;
+    top: 50%; transform: translateY(-50%);
+    width: 44px; height:44px;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: rgba(36,29,22,0.6);
+    color: var(--ink-dim);
+    display:flex; align-items:center; justify-content:center;
+    cursor: pointer;
+    z-index: 10;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .arrow-btn:hover{ border-color: var(--gold); color: var(--gold); }
+  .arrow-btn:disabled{ opacity: 0.25; cursor: default; }
+  .arrow-btn:disabled:hover{ border-color: var(--rule); color: var(--ink-dim); }
+  #prev{ left: 24px; }
+  #next{ right: 24px; }
+
+  #counter{
+    position: fixed; top: 24px; right: 30px;
+    font-size: 12px; letter-spacing:0.1em; color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+    z-index: 10;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .arrow-btn, #nav button.dot, .cta-button{ transition: none; }
+  }
+
+  /* ---------- PRINT (PDF export) ---------- */
+  @media print{
+    @page{ size: 1280px 720px; margin: 0; }
+    html, body{ overflow: visible; height: auto; width: auto; }
+    #stage{ position: static; display:block; background: var(--bg); }
+    #deck-scaler{ width:auto; height:auto; transform: none !important; }
+    .slide{
+      display: flex !important;
+      position: static;
+      width: 1280px; height: 720px;
+      page-break-after: always;
+      break-after: page;
+    }
+    .slide:last-child{ page-break-after: auto; break-after: auto; }
+    #nav, .arrow-btn, #counter{ display: none !important; }
+  }
+</style>
+
+<div id="stage">
+  <div id="deck-scaler"></div>
+</div>
+
+<button class="arrow-btn" id="prev" aria-label="Slide precedente">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 2L4 8l6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<button class="arrow-btn" id="next" aria-label="Slide successiva">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<div id="counter"></div>
+<div id="nav"></div>
+
+<script>
+(function(){
+  var CHECK = '<svg class="mark" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var CROSS = '<svg class="mark" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>';
+
+  var slides = [
+    {
+      type: "cover",
+      render: function(){
+        return '' +
+          '<div class="cover-top">' +
+            '<div class="cover-kicker">Presentazione &mdash; Sito Web</div>' +
+            '<div class="seal"><div class="seal-year">1912</div><div class="seal-txt">TRATTORIA&nbsp;ROMANA</div></div>' +
+          '</div>' +
+          '<h1>Al Grottino<br><em>Dal 1912</em></h1>' +
+          '<div class="cover-sub">La vostra presenza online, oggi.</div>' +
+          '<div class="cover-foot"><span>Viale Romania 27, Roma</span><span>Preparato per voi</span></div>';
+      }
+    },
+    {
+      type: "text",
+      kicker: "01 &mdash; Punto di partenza",
+      title: "Instagram funziona. Ma vive solo l&igrave; dentro",
+      body: 'Menu nei post, prenotazioni via DM, oltre <span class="hl">9.000 persone</span> che vi seguono: Instagram vi ha portato clienti fino a oggi. Ma fuori da l&igrave; &mdash; su Google, su Google Maps, per chi non vi segue ancora &mdash; il ristorante non ha una pagina propria.'
+    },
+    {
+      type: "stat",
+      kicker: "02 &mdash; Cosa significa in pratica",
+      title: "Chi cerca online si aspetta di trovarvi l&igrave;",
+      stats: [
+        { num: "77%", desc: "controlla il sito di un ristorante prima di uscire a mangiare o di ordinare" },
+        { num: "84%", desc: "considera un sito pi&ugrave; affidabile di un semplice profilo social" }
+      ],
+      source: "Fonti: ChowNow, Network Solutions &mdash; 2026"
+    },
+    {
+      type: "compare",
+      kicker: "03 &mdash; Confronto",
+      title: "Prima e dopo il sito",
+      prima: [
+        "Solo chi vi segue già su Instagram vi trova",
+        "Menu nei post, da cercare scorrendo il profilo",
+        "Prenotazioni via DM, da controllare manualmente",
+        "Assenti da Google e Google Maps"
+      ],
+      dopo: [
+        "Trovabili anche da chi cerca online per la prima volta",
+        "Menu in un&rsquo;unica pagina, sempre consultabile",
+        "Richiesta di prenotazione via form, in aggiunta al DM",
+        "Presenti su Google, con storia, mappa e orari"
+      ]
+    },
+    {
+      type: "list",
+      kicker: "04 &mdash; Cosa include il sito",
+      title: "Gi&agrave; pronto, con i vostri contenuti reali",
+      items: [
+        "Menu completo: antipasti, pastasciutta, secondi, contorni, dolci",
+        "Richiesta di prenotazione via form, in aggiunta a Instagram",
+        "Storia del locale, dal 1912 a oggi",
+        "Mappa con indirizzo preciso &mdash; Viale Romania 27",
+        "Foto reali del locale e dei piatti",
+        "Ottimizzato per chi lo apre da telefono"
+      ]
+    },
+    {
+      type: "text",
+      kicker: "05 &mdash; Perch&eacute; conviene muoversi ora",
+      title: "&Egrave; ancora un vantaggio raro",
+      body: 'Ancora oggi, <span class="hl">6 ristoranti su 10</span> non hanno un sito web. Non sostituisce Instagram: aggiunge un canale che resta vostro, sempre aggiornato, raggiungibile anche da chi non vi segue ancora &mdash; e vi distingue da chi questo passo non l&rsquo;ha ancora fatto.'
+    },
+    {
+      type: "closing",
+      kicker: "06 &mdash; Prossimo passo",
+      title: "A voi la parola",
+      body: "Se il sito vi convince, contattateci &mdash; restiamo a disposizione per eventuali modifiche prima della pubblicazione.",
+      nextHint: "Continuate per guardare la demo",
+      contact: "327 079 8781 &middot; amagnifico00@gmail.com"
+    },
+    {
+      type: "cta",
+      kicker: "07 &mdash; La demo",
+      title: "La demo &egrave; pronta",
+      body: "Il sito &egrave; online con i vostri contenuti reali &mdash; menu, foto, storia, indirizzo.",
+      ctaLabel: "Guarda la demo",
+      ctaHref: "https://chessalibero-dev.github.io/al-grottino-1912/"
+    }
+  ];
+
+  function kickerHtml(k){
+    return '<div class="kicker">' + k + '</div>';
+  }
+
+  function buildSlide(s, i){
+    var el = document.createElement('div');
+    el.className = 'slide slide--' + s.type;
+    var html = '';
+    if(s.type === 'cover'){
+      html = s.render();
+    } else if(s.type === 'text'){
+      html = kickerHtml(s.kicker) + '<h2>' + s.title + '</h2><div class="body">' + s.body + '</div>';
+    } else if(s.type === 'stat'){
+      html = kickerHtml(s.kicker) + '<h2>' + s.title + '</h2>' +
+        '<div class="stat-grid">' + s.stats.map(function(st){
+          return '<div class="stat-tile"><div class="stat-num">' + st.num + '</div><div class="stat-desc">' + st.desc + '</div></div>';
+        }).join('') + '</div>' +
+        '<div class="stat-source">' + s.source + '</div>';
+    } else if(s.type === 'compare'){
+      html = kickerHtml(s.kicker) + '<h2>' + s.title + '</h2>' +
+        '<div class="compare-grid">' +
+          '<div class="compare-col compare-col--prima">' +
+            '<div class="compare-label">Prima (oggi)</div>' +
+            '<ul class="compare-list">' + s.prima.map(function(t){ return '<li>' + CROSS + '<span>' + t + '</span></li>'; }).join('') + '</ul>' +
+          '</div>' +
+          '<div class="compare-divider"></div>' +
+          '<div class="compare-col compare-col--dopo">' +
+            '<div class="compare-label">Dopo (con il sito)</div>' +
+            '<ul class="compare-list">' + s.dopo.map(function(t){ return '<li>' + CHECK + '<span>' + t + '</span></li>'; }).join('') + '</ul>' +
+          '</div>' +
+        '</div>';
+    } else if(s.type === 'list'){
+      html = kickerHtml(s.kicker) + '<h2>' + s.title + '</h2>' +
+        '<div class="feat-grid">' + s.items.map(function(t){ return '<div class="feat-item"><span class="dash">&mdash;</span><span>' + t + '</span></div>'; }).join('') + '</div>';
+    } else if(s.type === 'cta'){
+      html = kickerHtml(s.kicker) + '<h2>' + s.title + '</h2><div class="body">' + s.body + '</div>' +
+        '<a class="cta-button" href="' + s.ctaHref + '">' + s.ctaLabel + ' &rarr;</a>' +
+        '<div class="cta-hint">Se il bottone non si apre, copia questo link:</div>' +
+        '<a class="cta-url" href="' + s.ctaHref + '">' + s.ctaHref + '</a>';
+    } else if(s.type === 'closing'){
+      html = kickerHtml(s.kicker) + '<h2>' + s.title + '</h2><div class="body">' + s.body + '</div>' +
+        (s.nextHint ? '<div class="next-hint">' + s.nextHint + ' <span aria-hidden="true">&rarr;</span></div>' : '') +
+        '<div class="closing-foot"><span class="line"></span><div><div class="closing-label">Al Grottino Dal 1912</div><div class="closing-info">' + s.contact + '</div></div></div>';
+    }
+    el.innerHTML = html;
+    return el;
+  }
+
+  var scaler = document.getElementById('deck-scaler');
+  slides.forEach(function(s, i){
+    var el = buildSlide(s, i);
+    if(i === 0) el.classList.add('active');
+    scaler.appendChild(el);
+  });
+
+  var current = 0;
+  var slideEls = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var prevBtn = document.getElementById('prev');
+  var nextBtn = document.getElementById('next');
+  var navEl = document.getElementById('nav');
+  var counterEl = document.getElementById('counter');
+
+  slides.forEach(function(_, i){
+    var b = document.createElement('button');
+    b.className = 'dot';
+    b.setAttribute('aria-label', 'Vai alla slide ' + (i+1));
+    b.addEventListener('click', function(){ goTo(i); });
+    navEl.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(navEl.querySelectorAll('.dot'));
+
+  function goTo(i){
+    if(i < 0 || i >= slideEls.length) return;
+    slideEls[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = i;
+    slideEls[current].classList.add('active');
+    dots[current].classList.add('active');
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === slideEls.length - 1;
+    counterEl.textContent = (current + 1) + ' / ' + slideEls.length;
+  }
+  goTo(0);
+
+  prevBtn.addEventListener('click', function(){ goTo(current - 1); });
+  nextBtn.addEventListener('click', function(){ goTo(current + 1); });
+  window.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowRight' || e.key === ' '){ goTo(current + 1); }
+    else if(e.key === 'ArrowLeft'){ goTo(current - 1); }
+  });
+
+  function rescale(){
+    var pad = 40;
+    var sx = (window.innerWidth - pad) / 1280;
+    var sy = (window.innerHeight - pad) / 720;
+    var scale = Math.min(sx, sy, 1.15);
+    scaler.style.transform = 'scale(' + scale + ')';
+  }
+  window.addEventListener('resize', rescale);
+  rescale();
+})();
+</script>
