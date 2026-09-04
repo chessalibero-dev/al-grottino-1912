@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al Grottino Dal 1912 — Trattoria Romana ai Parioli</title>
+<meta name="description" content="Al Grottino Dal 1912, trattoria tradizionale romana ai Parioli, Roma. Menu, orari, prenotazioni e indicazioni stradali.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="demo-preview-banner">Anteprima &mdash; sito non ancora pubblicato</div>
+
+<a class="skip-link" href="#main">Vai al contenuto</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#top">
+      <span class="brand-kicker">Trattoria</span>
+      <span class="brand-name">Al Grottino</span>
+      <span class="brand-year">Dal 1912</span>
+    </a>
+
+    <nav id="primary-nav" class="primary-nav">
+      <a href="#menu" data-i18n="nav.menu">Menu</a>
+      <a href="#storia" data-i18n="nav.storia">La storia</a>
+      <a href="#dove-siamo" data-i18n="nav.dove">Dove siamo</a>
+      <a href="#prenota" class="nav-book-btn" data-i18n="nav.prenota.btn">Prenota un tavolo</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang-toggle" role="group" aria-label="Lingua / Language">
+        <button type="button" class="lang-btn active" data-lang="it">IT</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a class="tel-pill js-tel-link" href="tel:+39068079807">
+        <span class="js-phone-display">06 8079807</span>
+      </a>
+      <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section id="top" class="hero">
+    <div class="hero-media">
+      <img src="images/esterno-insegna-notte.jpg" alt="Ingresso di Al Grottino Dal 1912 di sera, Viale Romania">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-stamp" aria-hidden="true">
+      <svg viewBox="0 0 200 200">
+        <path id="stampCirclePath" d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0" fill="none"></path>
+        <text>
+          <textPath href="#stampCirclePath">TRATTORIA · ROMA · PARIOLI · DAL 1912 · </textPath>
+        </text>
+      </svg>
+      <span class="hero-stamp-core">1912</span>
+    </div>
+    <div class="hero-content">
+      <p class="hero-kicker" data-i18n="hero.kicker">Trattoria tradizionale italiana · dal 1912</p>
+      <h1>Al Grottino</h1>
+      <p class="hero-subtitle" data-i18n="hero.subtitle">Ai Parioli, Roma. Terza gestione, stessa sostanza.</p>
+      <div class="hero-cta">
+        <a href="#prenota" class="btn btn-primary" data-i18n="hero.cta.book">Prenota un tavolo</a>
+        <a href="#menu" class="btn btn-ghost" data-i18n="hero.cta.menu">Guarda il menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO PRATICHE -->
+  <section class="info-strip reveal">
+    <div class="info-item">
+      <span class="info-label" data-i18n="info.orari.label">Orari</span>
+      <ul id="hours-list" class="hours-list"></ul>
+    </div>
+    <div class="info-item">
+      <span class="info-label" data-i18n="info.indirizzo.label">Indirizzo</span>
+      <p class="js-address-display">Viale Romania 27, 00197 Roma</p>
+      <a class="text-link js-maps-link" href="#" data-i18n="mappa.apri">Apri in Google Maps</a>
+    </div>
+    <div class="info-item">
+      <span class="info-label" data-i18n="info.telefono.label">Telefono</span>
+      <a class="text-link js-tel-link" href="tel:+39068079807">
+        <span class="js-phone-display">06 8079807</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu" class="menu-section reveal">
+    <div class="section-head">
+      <h2 data-i18n="menu.title">Il menu</h2>
+      <p data-i18n="menu.subtitle">Prezzi in euro. Seleziona una portata per aprirla.</p>
+    </div>
+    <div id="menu-accordion" class="menu-accordion"></div>
+  </section>
+
+  <!-- STORIA: blocchi full-bleed alternati + citazione stampa -->
+  <section id="storia">
+    <div class="feature-block reveal">
+      <div class="feature-media">
+        <img src="images/primo-amatriciana-padella.jpg" alt="Pasta al sugo servita nella padella, cucina di Al Grottino" loading="lazy">
+      </div>
+      <div class="feature-text">
+        <span class="feature-kicker" data-i18n="feature1.kicker">In cucina</span>
+        <h2 data-i18n="feature1.title">Cucina tradizionale, senza rivisitazioni</h2>
+        <p data-i18n="feature1.text">Niente riletture, niente tendenze: la linea è quella romana di sempre, proposta con rispetto e semplicità. Amatriciana, guancia brasata, polpette come le fa la trattoria — quelle vere.</p>
+      </div>
+    </div>
+
+    <div class="feature-block feature-reverse reveal">
+      <div class="feature-media">
+        <img src="images/muro-memorabilia-corner.jpg" alt="Angolo della sala con memorabilia e fotografie storiche" loading="lazy">
+      </div>
+      <div class="feature-text">
+        <span class="feature-kicker" data-i18n="feature2.kicker">In sala</span>
+        <h2 data-i18n="feature2.title">Un ambiente che non ha bisogno di posare</h2>
+        <p data-i18n="feature2.text">Legno, fotografie di famiglia, una tv accesa senza audio, il vino della casa a quartino. Due sale, circa quaranta coperti, la stessa personalità da tre generazioni.</p>
+      </div>
+    </div>
+
+    <div class="press-strip reveal">
+      <span class="feature-kicker" data-i18n="press.kicker">Parlano di noi</span>
+      <blockquote>
+        <p data-i18n="press.quote">«Ai Parioli, quartiere elegante spesso associato a indirizzi alla moda, resiste una trattoria storica attiva dal 1912 […] Nulla di sbagliato, ma per chi cerca ancora quell'atmosfera genuina, Al Grottino dal 1912 è uno di questi.»</p>
+        <cite data-i18n="press.source">— Luisa Cuomo, Le Strade, 23 aprile 2026</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- GALLERIA -->
+  <section class="gallery-section reveal">
+    <div class="section-head">
+      <h2 data-i18n="gallery.title">Galleria</h2>
+    </div>
+    <div class="gallery-grid">
+      <figure class="gallery-item span-2">
+        <img src="images/hero-tavola-pasta.jpg" alt="Tavolo apparecchiato con quattro primi al Grottino" loading="lazy">
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/ritratto-cuoco-mortadella.jpg" alt="Ritratto scherzoso appeso in sala, con fetta di mortadella" loading="lazy">
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/primo-fichi-pancetta.jpg" alt="Fettuccine con fichi e pancetta croccante" loading="lazy">
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/muro-calcio-vintage.jpg" alt="Parete con fotografie calcistiche d'epoca" loading="lazy">
+      </figure>
+      <figure class="gallery-item span-2">
+        <img src="images/muro-collage-vintage.jpg" alt="Collage vintage di riviste e ritagli d'epoca in sala" loading="lazy">
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/interno-cassetta-verdure.jpg" alt="Cassetta di verdure fresche nell'angolo della sala" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <!-- PRENOTA -->
+  <section id="prenota" class="booking-section reveal">
+    <div class="section-head">
+      <h2 data-i18n="prenota.title">Prenota un tavolo</h2>
+      <p data-i18n="prenota.subtitle">Non abbiamo prenotazione online: compila il modulo, ti prepariamo il messaggio da leggere quando chiami.</p>
+    </div>
+
+    <form id="booking-form" class="booking-form">
+      <div class="form-row">
+        <label>
+          <span data-i18n="prenota.nome">Nome</span>
+          <input type="text" name="nome" required>
+        </label>
+        <label>
+          <span data-i18n="prenota.persone">Persone</span>
+          <input type="number" name="persone" min="1" max="40" value="2" required>
+        </label>
+      </div>
+      <div class="form-row">
+        <label>
+          <span data-i18n="prenota.data">Data</span>
+          <input type="date" name="data" required>
+        </label>
+        <label>
+          <span data-i18n="prenota.ora">Ora</span>
+          <input type="time" name="ora" required>
+        </label>
+      </div>
+      <div class="form-row">
+        <label class="full">
+          <span data-i18n="prenota.telefono">Il tuo numero</span>
+          <input type="tel" name="telefono" required>
+        </label>
+      </div>
+      <div class="form-row">
+        <label class="full">
+          <span data-i18n="prenota.note">Note (facoltativo)</span>
+          <textarea name="note" rows="2"></textarea>
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary" data-i18n="prenota.submit">Prepara il messaggio</button>
+    </form>
+
+    <div id="booking-result" class="booking-result" hidden>
+      <p class="booking-result-label" data-i18n="prenota.result.title">Ecco cosa dire al telefono:</p>
+      <p id="booking-message" class="booking-message"></p>
+      <div class="booking-result-actions">
+        <button id="copy-message-btn" type="button" class="btn btn-ghost" data-i18n="prenota.copia">Copia messaggio</button>
+        <button id="call-from-result-btn" type="button" class="btn btn-primary" data-i18n="prenota.chiama">Chiama ora per prenotare</button>
+      </div>
+      <p class="booking-hint" data-i18n="prenota.hint">Il bottone non invia nulla da solo: apre la chiamata, il messaggio qui sopra ti serve da traccia mentre parli con noi.</p>
+    </div>
+  </section>
+
+  <!-- MAPPA -->
+  <section id="dove-siamo" class="map-section reveal">
+    <div class="section-head">
+      <h2 data-i18n="mappa.title">Dove siamo</h2>
+    </div>
+    <div class="map-wrap">
+      <iframe
+        title="Mappa Al Grottino Dal 1912"
+        src="https://www.google.com/maps?q=Al+Grottino+Dal+1912,+Viale+Romania+27,+00197+Roma&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <a class="btn btn-ghost js-maps-link" href="#" data-i18n="mappa.apri">Apri in Google Maps</a>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-name">Al Grottino</span>
+      <span class="brand-year">Dal 1912</span>
+    </div>
+    <div class="footer-info">
+      <p class="js-address-display">Viale Romania 27, 00197 Roma</p>
+      <a class="js-tel-link" href="tel:+39068079807"><span class="js-phone-display">06 8079807</span></a>
+    </div>
+    <div class="footer-social">
+      <span data-i18n="footer.social">Seguici</span>
+      <a href="https://www.instagram.com/algrottinodal1912/" target="_blank" rel="noopener">@algrottinodal1912</a>
+    </div>
+  </div>
+  <p class="footer-legal">© <span id="footer-year"></span> Al Grottino Dal 1912 — <span data-i18n="footer.rights">Tutti i diritti riservati.</span></p>
+</footer>
+
+<!-- Bottone prenota flottante -->
+<a id="sticky-book" class="sticky-book" href="#prenota" data-i18n="sticky.book">Prenota</a>
+
+<script src="script.js"></script>
+</body>
+</html>
